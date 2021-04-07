@@ -1,10 +1,7 @@
 function condenseNumber(input) {
 	let condense = [];
 	let result = 0;
-	for (let index = 0; index < input.length; index++) {
-		if (input.length === 1) {
-			break;
-		}
+	for (let index = input.length; index !== 1; index++) {
 		for (let i = 0; i <= input.length - 2; i++) {
 			condense[i] = Number(input[i] + Number(input[i + 1]));
 		}
