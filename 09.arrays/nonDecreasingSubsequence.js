@@ -1,13 +1,14 @@
 function nonDecreasing(arr) {
-	let biggestNum = 0;
-	const newArr = [];
-	for (let i = 0; i < arr.length; i++) {
-		let currentNum = Number(arr[i]);
-		if (currentNum > biggestNum) {
-			biggestNum = currentNum;
-			newArr.push(arr[i]);
+	let currentNums = [];
+
+	arr.filter((number) => {
+		if (currentNums.length === 0) {
+			currentNums.push(number);
+		} else if (number >= currentNums[currentNums.length - 1]) {
+			currentNums.push(number);
 		}
-	}
-	console.log(newArr.join(' '));
+	});
+
+	console.log(currentNums.join(' '));
 }
 nonDecreasing([ 1, 3, 8, 4, 10, 12, 3, 2, 24 ]);
