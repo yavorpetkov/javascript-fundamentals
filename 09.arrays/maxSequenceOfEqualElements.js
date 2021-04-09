@@ -1,16 +1,14 @@
 function maxSequence(arr) {
+	let newMax = [];
 	let max = [];
-	let biggestPosible = 0;
-	let counter = 0;
-	for (let i = 0; i < arr.length; ) {
-		for (let h = arr[i]; h === arr[i]; i++) {
-			counter++;
+	for (let i = 0; i < arr.length; i++) {
+		newMax.push(arr[i]);
+		if (newMax.length > max.length) {
+			max = newMax;
 		}
-		if (counter > biggestPosible) {
-			biggestPosible = counter;
-			max = arr.slice(i - biggestPosible, i);
+		if (arr[i] !== arr[i + 1]) {
+			newMax = [];
 		}
-		counter = 0;
 	}
 	console.log(max.join(' '));
 }
