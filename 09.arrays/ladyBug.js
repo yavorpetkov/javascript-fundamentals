@@ -27,8 +27,10 @@ function ladyBug(arr) {
 				}
 			}
 		}
-
-		if (position <= lengthOfArray && position > 0) {
+		if (position >= lengthOfArray || position < 0) {
+			position = 'a';
+		}
+		if (position !== 'a') {
 			ladybugArr[position] = 1;
 			if (position !== movement[0]) {
 				ladybugArr[movement[0]] = 0;
