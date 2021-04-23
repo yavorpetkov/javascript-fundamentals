@@ -29,6 +29,7 @@ function arrManipulator(arr, operators) {
 				break;
 		}
 	}
+	afaf;
 
 	function add(index, element) {
 		arr.splice(index, 0, element);
