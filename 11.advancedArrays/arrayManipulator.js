@@ -1,37 +1,66 @@
 function arrManipulator(arr, operators) {
-	let j = 0;
 	for (let i = 0; i < operators.length; i++) {
 		let [ command, firstNum, seccondNum ] = operators[i].split(' ');
 		firstNum = Number(firstNum);
 		seccondNum = Number(seccondNum);
-		if (command === 'add') {
-			arr.splice(firstNum, 0, seccondNum);
-		} else if (command === 'addMany') {
-			seccondNum = operators[i].split(' ').slice(2, operators[i].length);
-			arr.splice(firstNum, 0, seccondNum);
-			arr = arr.flat();
-			arr = arr.map(Number);
-		} else if (command === 'contains') {
-			console.log(arr.findIndex((el) => el === firstNum));
-		} else if (command === 'remove') {
-			arr.splice(firstNum, 1);
-		} else if (command === 'shift') {
-			arr.push(arr.shift());
-		} else if (command === 'sumPairs') {
-			arr = sumPairs(arr);
-		} else if (command === 'print') {
-			break;
+		switch (command) {
+			case 'add':
+				add(firstNum, seccondNum);
+				break;
+			case 'addMany':
+				addMany(firstNum, seccondNum, operators, i);
+				break;
+			case 'contains':
+				contains(firstNum);
+				break;
+			case 'remove':
+				remove(firstNum);
+				break;
+			case 'shift':
+				shift(firstNum);
+				break;
+			case 'sumPairs':
+				arr = sumPairs(arr);
+				break;
+			case 'print':
+				print(arr);
+				break;
+			default:
+				break;
 		}
 	}
-	console.log(arr);
+
+	function add(index, element) {
+		arr.splice(index, 0, element);
+	}
+	function addMany(index, element, operators, i) {
+		element = operators[i].split(' ').slice(2, operators[i].length);
+		arr.splice(index, 0, element);
+		arr = arr.flat().map(Number);
+	}
+	function contains(element) {
+		console.log(arr.findIndex((el) => el === element));
+	}
+	function remove(index) {
+		arr.splice(index, 1);
+	}
+	function shift(count) {
+		for (let i = 0; i < count; i++) {
+			arr.push(arr.shift());
+		}
+	}
 	function sumPairs(arr) {
+		let j = 0;
 		let newArr = new Array();
 		for (let i = 0; i < arr.length / 2; i++) {
-			newArr[i] = arr[j] + arr[j + 1];
+			newArr.push(arr[j] + arr[j + 1]);
 			j += 2;
 		}
 		j = 0;
 		return newArr;
+	}
+	function print(arr) {
+		console.log(arr);
 	}
 }
 arrManipulator([ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 ], [ 'sumPairs', 'sumPairs', 'addMany 0 -1 -2 -3', 'print' ]);
