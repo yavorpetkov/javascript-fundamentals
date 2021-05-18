@@ -2,11 +2,9 @@ function town(arr) {
 	const city = {};
 	for (let i = 0; i < arr.length; i++) {
 		let [ theTown, theLatitude, theLongitude ] = arr[i].split(' | ');
-		theLatitude = Number(theLatitude).toFixed(2);
-		theLongitude = Number(theLongitude).toFixed(2);
 		city.town = theTown;
-		city.latitude = theLatitude;
-		city.longitude = theLongitude;
+		city.latitude = Number(theLatitude).toFixed(2);
+		city.longitude = Number(theLongitude).toFixed(2);
 		console.log(city);
 	}
 }
