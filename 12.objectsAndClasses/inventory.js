@@ -3,7 +3,7 @@ function inventory(arr) {
 	for (const hero of arr) {
 		let [ heroName, level, items ] = hero.split(' / ');
 		items = items.split(', ').sort().join(', ');
-		heroes.push({ hero: heroName, level: level, items: items });
+		heroes.push({ hero: heroName, level, items });
 	}
 	heroes.sort((a, b) => a.level - b.level);
 
