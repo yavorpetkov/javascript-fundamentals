@@ -1,11 +1,14 @@
 function addressBook(array) {
-	array.sort();
 	const address = {};
 	for (const line of array) {
 		let [ name, place ] = line.split(':');
 		address[name] = place;
 	}
-	for (const iterator of Object.entries(address)) {
+	let sorted = Object.entries(address);
+	sorted.sort(([ keyA ], [ keyB ]) => {
+		return keyA.localeCompare(keyB);
+	});
+	for (const iterator of sorted) {
 		console.log(`${iterator[0]} -> ${iterator[1]}`);
 	}
 }

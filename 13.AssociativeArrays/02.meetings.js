@@ -1,20 +1,17 @@
 function meetings(array) {
-	const meeting = {};
-	const alreadyPassed = [];
+	const calendar = {};
 	for (const line of array) {
 		let [ day, person ] = line.split(' ');
-		let sameDayMeeting = (el) => el === day;
-		let notSameDay = alreadyPassed.findIndex(sameDayMeeting);
-		if (notSameDay !== -1) {
+
+		if (calendar.hasOwnProperty(day)) {
 			console.log(`Conflict on ${day}!`);
 		} else {
 			console.log(`Scheduled for ${day}`);
-			meeting[day] = person;
+			calendar[day] = person;
 		}
-		alreadyPassed.push(day);
 	}
-	for (const iterator of Object.entries(meeting)) {
-		console.log(`${iterator[0]} -> ${iterator[1]}`);
+	for (const [ day, person ] of Object.entries(calendar)) {
+		console.log(`${day} -> ${person}`);
 	}
 }
 meetings([ 'Monday Peter', 'Wednesday Bill', 'Monday Tim', 'Friday Tim' ]);
