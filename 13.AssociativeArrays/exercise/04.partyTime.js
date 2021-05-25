@@ -19,7 +19,7 @@ function partyTime(array) {
 
 	console.log(sorted.length);
 
-	for (const [ key, value ] of sorted) {
+	for (const [ , value ] of sorted) {
 		console.log(value);
 	}
 }
