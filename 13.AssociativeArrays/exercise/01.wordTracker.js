@@ -1,7 +1,7 @@
 function wordTracker(array) {
 	let myMap = new Map();
 	let wordsNeeded = array.shift().split(' ');
-	const quantity = 1;
+	const quantity = 0;
 
 	for (const word of array) {
 		let sameWord = wordsNeeded.find((el) => el === word);
@@ -22,7 +22,7 @@ function wordTracker(array) {
 	}
 }
 wordTracker([
-	'this sentence In to the',
+	'this sentence In to the block',
 	'In',
 	'this',
 	'sentence',

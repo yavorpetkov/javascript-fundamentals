@@ -1,28 +1,17 @@
 function piccolo(array) {
-	function sortingCars(a, b) {
-		for (let i = 2; i < 6; i++) {
-			if (a[0][i] !== b[0][i]) {
-				let aCar = a[0][i];
-				let bCar = b[0][i];
-				return aCar - bCar;
-			}
-		}
-	}
-	let myMap = new Map();
+	let myParking = [];
 	for (const line of array) {
 		let [ place, car ] = line.split(', ');
-		if (place === 'IN') {
-			myMap.set(car, place);
-		} else if (place === 'OUT') {
-			myMap.delete(car);
+		if (place === 'IN' && !myParking.includes(car)) {
+			myParking.push(car);
+		} else if (place === 'OUT' && myParking.includes(car)) {
+			let index = myParking.indexOf(car);
+			myParking.splice(index, 1);
 		}
 	}
-	let sorted = Array.from(myMap).sort((a, b) => sortingCars(a, b));
 
-	if (sorted.length > 0) {
-		for (const [ key ] of sorted) {
-			console.log(key);
-		}
+	if (myParking.length > 0) {
+		console.log(myParking.sort((a, b) => a.localeCompare(b)).join('\n'));
 	} else {
 		console.log('Parking Lot is Empty');
 	}

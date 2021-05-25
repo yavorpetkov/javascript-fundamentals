@@ -1,5 +1,6 @@
 function cardGame(array) {
 	let myMap = new Map();
+	let playerArr = [];
 
 	let cardPoints = {
 		'2': 2,
@@ -23,22 +24,16 @@ function cardGame(array) {
 		C: 1
 	};
 
-	function sumPoints(arr) {
-		for (let i = 0; i < arr.length / 2; i++) {
-			let [ player ] = arr[i].split(': ');
-			let cardHodler = myMap.get(player);
+	function sumPoints() {
+		let allPlayers = new Set(playerArr);
+		for (const player of allPlayers) {
+			let cardHodler = new Set(myMap.get(player));
 			let points = 0;
-			let nonRepeatingCards = [];
 			for (const card of cardHodler) {
-				let isHere = nonRepeatingCards.find((el) => el === card);
-				if (!isHere) {
-					nonRepeatingCards.push(card);
-					let currentCard = card.split('');
-					let multiplier = currentCard.pop();
-					let point = currentCard.join('');
-
-					points += cardPoints[point] * cardManipulator[multiplier];
-				}
+				let currentCard = card.split('');
+				let multiplier = currentCard.pop();
+				let point = currentCard.join('');
+				points += cardPoints[point] * cardManipulator[multiplier];
 			}
 			myMap.set(player, points);
 		}
@@ -47,9 +42,8 @@ function cardGame(array) {
 	for (const line of array) {
 		let tokens = line.split(': ');
 		let player = tokens[0];
-		let deck = tokens.splice(1, tokens.length);
-		let cards = deck[0].split(', ');
-
+		let cards = tokens[1].split(', ');
+		playerArr.push(player);
 		if (!myMap.has(player)) {
 			myMap.set(player, []);
 			myMap.set(player, myMap.get(player).concat(cards));
@@ -57,7 +51,7 @@ function cardGame(array) {
 			myMap.set(player, myMap.get(player).concat(cards));
 		}
 	}
-	sumPoints(array);
+	sumPoints();
 	let totalPoints = Array.from(myMap);
 
 	for (const [ player, points ] of totalPoints) {
