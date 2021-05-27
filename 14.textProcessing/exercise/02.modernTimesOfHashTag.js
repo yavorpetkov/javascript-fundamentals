@@ -2,9 +2,9 @@ function hashTag(text) {
 	let textArr = text.split(' ');
 	for (const word of textArr) {
 		if (word.startsWith('#') && !word.endsWith('#')) {
-			let checker = /[A-Z]?[a-z+]/;
+			let checker = /[^a-zA-Z]/;
 			let noHashtag = word.slice(1);
-			if (noHashtag.match(checker)) {
+			if (!noHashtag.match(checker)) {
 				console.log(noHashtag);
 			}
 		}
