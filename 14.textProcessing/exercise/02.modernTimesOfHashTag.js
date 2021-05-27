@@ -2,11 +2,11 @@ function hashTag(text) {
 	let textArr = text.split(' ');
 	for (const word of textArr) {
 		if (word.startsWith('#') && !word.endsWith('#')) {
-			let newWord = word.replace('#', '');
-			while (newWord.includes('#')) {
-				newWord = word.replace('#', '');
+			let checker = /[A-Z]?[a-z+]/;
+			let noHashtag = word.slice(1);
+			if (noHashtag.match(checker)) {
+				console.log(noHashtag);
 			}
-			console.log(newWord);
 		}
 	}
 }
