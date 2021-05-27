@@ -4,6 +4,6 @@ function fullName(string) {
 	while ((validName = checker.exec(string)) !== null) {
 		validNames.push(validName[0]);
 	}
-	console.log(validNames.join(', '));
+	console.log(validNames.join(' '));
 }
 fullName('Ivan Ivanov, Ivan ivanov, ivan Ivanov, IVan Ivanov, Test Testov, Ivan	Ivanov');
